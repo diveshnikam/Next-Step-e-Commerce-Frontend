@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import Header from "./components/Header";
 import { Link } from "react-router-dom";
-import Category from "./components/category";
+import Category from "./components/Category";
 import HotDeals from "./components/HotDeals";
 import Trending from "./components/Trending";
 import Footer from "./components/Footer";
