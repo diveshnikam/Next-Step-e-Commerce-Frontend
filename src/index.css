@@ -1,0 +1,8 @@
+html, body, #root {
+  background-color: #fff !important;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  transform: translateZ(0); /* ✅ Forces Safari to keep GPU layer active */
+  will-change: transform;
+}
