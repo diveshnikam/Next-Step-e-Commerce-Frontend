@@ -8,7 +8,8 @@ import { Link } from "react-router-dom";
 import WishlistCard from "../components/WishlistCard";
 
 const Cart = () => {
-  const { show,  cartCount, setCartCount, refreshCounts } = useContext(NextStepContext);
+  const { show, cartCount, setCartCount, refreshCounts } =
+    useContext(NextStepContext);
 
   const { productData, loading, error } = useFetchSimilar(
     "https://next-step-ecommerce-backend.vercel.app/products/cart"
@@ -22,9 +23,6 @@ const Cart = () => {
   useEffect(() => {
     if (productData) setCartItems(productData);
   }, [productData]);
-
- 
-
 
   const addQty = (id) => {
     fetch(
@@ -83,7 +81,7 @@ const Cart = () => {
         );
         setAlertCart(true);
 
-        refreshCounts()
+        refreshCounts();
 
         setTimeout(() => {
           setAlertCart(false);
@@ -104,7 +102,7 @@ const Cart = () => {
 
         setDeleteCart(true);
 
-        refreshCounts()
+        refreshCounts();
 
         setTimeout(() => {
           setDeleteCart(false);
@@ -213,7 +211,7 @@ const Cart = () => {
                               return (
                                 <>
                                   <div
-                                    className="mb-4 mt-4 mx-auto"
+                                    className="mb-4 mt-4 mb-5 mx-auto"
                                     style={{ maxWidth: "540px" }}
                                   >
                                     <div className="d-flex flex-column flex-md-row align-items-center align-items-md-start justify-content-center justify-content-md-start gap-4 text-center text-md-start">
@@ -250,7 +248,7 @@ const Cart = () => {
                                           </button>
                                         </div>
                                       </div>
-                                      <div className="">
+                                      <div className="ms-0 ms-lg-5">
                                         <div className="">
                                           <h5 className="card-title">
                                             {prd.productId.name}
@@ -260,7 +258,7 @@ const Cart = () => {
                                             {prd.productId.category}
                                           </h6>
 
-                                          <div className="d-flex align-items-baseline gap-3 mt-3 price">
+                                          <div className="d-flex align-items-baseline gap-3 justify-content-center justify-content-lg-start mt-3 ">
                                             <h5 className="">
                                               ₹ {prd.productId.price}
                                             </h5>
@@ -273,7 +271,7 @@ const Cart = () => {
                                             )}
                                           </div>
 
-                                          <div className="d-flex align-items-baseline gap-3">
+                                          <div className="d-flex align-items-baseline gap-3 justify-content-center justify-content-lg-start">
                                             <button
                                               onClick={() =>
                                                 wishlistHandler(
@@ -282,7 +280,7 @@ const Cart = () => {
                                               }
                                               className="btn btn-dark mt-3"
                                             >
-                                              Favourite 🤍
+                                              🤍
                                             </button>
 
                                             <button

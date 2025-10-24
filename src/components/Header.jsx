@@ -3,7 +3,7 @@ import NextStepContext from "../context/NextStepContext";
 import { useContext, useEffect } from "react";
 
 const Header = () => {
-  const { setSearch, search, setShow, cartCount, refreshCounts } =
+  const { setSearch, search, setShow, cartCount, refreshCounts,  wishlistCount } =
     useContext(NextStepContext);
 
   const handleSearchChange = (e) => {
@@ -23,7 +23,8 @@ const Header = () => {
 
   return (
     <>
-      <nav className="navbar navbar-expand-lg  bg-white container ">
+    <nav className="navbar navbar-expand-xl bg-white container">
+
         <div className="container-fluid">
           <NavLink className="navbar-brand" to="/">
             <img
@@ -34,8 +35,63 @@ const Header = () => {
             />
           </NavLink>
 
+
+         
+<div className="d-flex d-xl-none align-items-center ms-auto">
+  <NavLink
+    to="/wishlist"
+    className="nav-link ms-2 p-2 position-relative rounded-circle wishlist-hover"
+  >
+    <img
+      src="https://cdn-icons-png.flaticon.com/512/1077/1077035.png"
+      alt="wishlist"
+      style={{ width: "24px", height: "24px" }}
+    />
+    {wishlistCount > 0 && (
+      <span
+        className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark"
+        style={{ fontSize: "0.65rem" }}
+      >
+        {wishlistCount}
+      </span>
+    )}
+  </NavLink>
+
+  <NavLink
+    to="/cart"
+    className="nav-link position-relative ms-2 p-2 rounded-circle cart-hover"
+  >
+    <img
+      src="https://cdn-icons-png.flaticon.com/512/1170/1170678.png"
+      alt="cart"
+      style={{ width: "24px", height: "24px" }}
+    />
+    {cartCount > 0 && (
+      <span
+        className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark"
+        style={{ fontSize: "0.65rem" }}
+      >
+        {cartCount}
+      </span>
+    )}
+  </NavLink>
+
+  <NavLink
+    to="/userprofile"
+    className="nav-link ms-2 p-2 rounded-circle profile-hover"
+  >
+    <img
+      src="https://res.cloudinary.com/di71zb4sb/image/upload/v1759349571/Screenshot_2025-10-02_at_1.42.32_AM_rwmaxt.png"
+      alt="profile"
+      style={{ width: "24px", height: "24px" }}
+      className="img-fluid"
+    />
+  </NavLink>
+</div>
+
+
           <button
-            className="navbar-toggler"
+            className="navbar-toggler ms-3"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#navbarNav"
@@ -46,11 +102,12 @@ const Header = () => {
             <span className="navbar-toggler-icon"></span>
           </button>
 
+
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav mx-auto  gap-3 gap-lg-5">
               <li className="nav-item">
                 <NavLink
-                  to="/products/all"
+                  to="/products/All"
                   className={({ isActive }) =>
                     isActive
                       ? "nav-link active text-black"
@@ -113,14 +170,18 @@ const Header = () => {
                 </NavLink>
               </li>
             </ul>
-            <div className="d-flex ms-auto align-items-center mt-3 mt-lg-0 mb-2 mb-lg-0">
+
+         <div className="d-flex flex-column flex-lg-row ms-auto mt-3 mt-lg-0 mb-2 mb-lg-0 ipadpro-search-fix nestedHub-search-fix">
+
+
+
               <form
-                className="d-flex me-3"
+                className="d-flex me-3 "
                 role="search"
                 onSubmit={(e) => e.preventDefault()}
               >
                 <input
-                  className="form-control w-100 bg-body-tertiary rounded-pill shadow-none no-focus-border"
+                  className="form-control  bg-body-tertiary rounded-pill shadow-none no-focus-border"
                   type="search"
                   placeholder="Search"
                   aria-label="Search"
@@ -135,15 +196,26 @@ const Header = () => {
                 />
               </form>
 
-              <NavLink
+            <div className="d-none d-xl-flex mt-lg-0 mt-5">
+
+
+                 <NavLink
                 to="/wishlist"
-                className="nav-link ms-2 p-2 rounded-circle wishlist-hover"
+                className="nav-link ms-2 p-2 position-relative rounded-circle wishlist-hover"
               >
                 <img
                   src="https://cdn-icons-png.flaticon.com/512/1077/1077035.png"
                   alt="wishlist"
                   style={{ width: "24px", height: "24px" }}
                 />
+                {wishlistCount > 0 && (
+                  <span
+                    className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark"
+                    style={{ fontSize: "0.65rem" }}
+                  >
+                    {wishlistCount}
+                  </span>
+                )}
               </NavLink>
 
               <NavLink
@@ -176,6 +248,10 @@ const Header = () => {
                   className="img-fluid"
                 />
               </NavLink>
+
+              </div>
+
+             
             </div>
           </div>
         </div>

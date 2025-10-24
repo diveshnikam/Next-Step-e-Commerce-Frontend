@@ -136,6 +136,20 @@
   }
 }
 
+/* iPad Pro portrait and landscape (approx. 1024–1366 px) */
+@media (min-width: 1020px) and (max-width: 1366px) {
+  .ipadpro-search-fix {
+    margin-top: 1.5rem !important; 
+  }
+}
+
+@media (min-width: 1280px) and (max-width: 1300px) {
+  .nestedHub-search-fix {
+    margin-bottom: 1.1rem !important; 
+  }
+}
+
+
 
 
 

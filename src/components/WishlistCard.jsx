@@ -22,6 +22,7 @@ const WishlistCard = ({ data }) => {
         setDetails((prev) => prev.filter((p) => p._id !== prdId));
 
         setAlert(true);
+        refreshCounts()
 
         setTimeout(() => {
           setAlert(false);

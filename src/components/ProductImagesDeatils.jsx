@@ -10,12 +10,12 @@ import useWishlistStatus from "../customHooks/useWishlistStatus";
 import { useContext } from "react";
 import NextStepContext from "../context/NextStepContext";
 
-
 const ProductImageDetails = ({ data }) => {
   const [mainImage, setMainImage] = useState(null);
   const [color, setColor] = useState("");
   const [selectedSize, setSelectedSize] = useState("");
   const [cartAdded, setCartAdded] = useState(false);
+  const [sizeAlert, setSizeAlert] = useState(false);
 
   useEffect(() => {
     if (data && data.colors) {
@@ -27,63 +27,84 @@ const ProductImageDetails = ({ data }) => {
   }, [data]);
 
   const { inWishlist, setInWishlist } = useWishlistStatus(data._id);
-  const { cartItems, setCartItems, refreshCounts } = useContext(NextStepContext);
-
+  const { cartItems, setCartItems, refreshCounts } =
+    useContext(NextStepContext);
 
   const wishlistHandler = () => {
-    fetch("https://next-step-ecommerce-backend.vercel.app/products/wishlist", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ productId: data._id }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setInWishlist((prev) => !prev);
-        refreshCounts()
-      })
-      .catch((err) => console.error("Error updating wishlist:", err));
+    if (inWishlist) {
+      fetch(
+        "https://next-step-ecommerce-backend.vercel.app/products/wishlist",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ productId: data._id }),
+        }
+      )
+        .then((res) => res.json())
+        .then((data) => {
+          setInWishlist((prev) => !prev);
+          refreshCounts();
+        })
+        .catch((err) => console.error("Error updating wishlist:", err));
+    } else if (selectedSize) {
+      fetch(
+        "https://next-step-ecommerce-backend.vercel.app/products/wishlist",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ productId: data._id }),
+        }
+      )
+        .then((res) => res.json())
+        .then((data) => {
+          setInWishlist((prev) => !prev);
+          refreshCounts();
+        })
+        .catch((err) => console.error("Error updating wishlist:", err));
+    } else {
+      setSizeAlert(true);
+      setTimeout(() => setSizeAlert(false), 3000);
+    }
   };
 
   const cartHandler = () => {
-    fetch("https://next-step-ecommerce-backend.vercel.app/products/cart", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ productId: data._id }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-
-        if(inWishlist){
-          setInWishlist(false)
-        }
-
-
-
-        setCartAdded(true);
-
-        refreshCounts()
-
-        setTimeout(() => {
-          setCartAdded(false);
-        }, 3000);
+    if (selectedSize) {
+      fetch("https://next-step-ecommerce-backend.vercel.app/products/cart", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ productId: data._id }),
       })
-      .catch((err) => console.error("Error updating wishlist:", err));
+        .then((res) => res.json())
+        .then((data) => {
+          if (inWishlist) {
+            setInWishlist(false);
+          }
+
+          setCartAdded(true);
+
+          refreshCounts();
+
+          setTimeout(() => {
+            setCartAdded(false);
+          }, 3000);
+        })
+        .catch((err) => console.error("Error updating wishlist:", err));
+    } else {
+      setSizeAlert(true);
+      setTimeout(() => setSizeAlert(false), 3000);
+    }
   };
 
   return (
     <>
-     
-
       {data && (
         <div className="container py-4">
           <div className="row">
-            <div className="col-md-7 d-flex justify-content-end gx-5">
+            <div className="col-md-7 d-flex flex-md-row flex-column-reverse gap-3">
               <div
-                className="me-3"
+                className=" mb-4 d-flex flex-md-column flex-row flex-wrap "
                 style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "20px",
+                  gap: "15px",
                   maxHeight: "500px",
                 }}
               >
@@ -190,12 +211,22 @@ const ProductImageDetails = ({ data }) => {
                   Add To Bag
                 </button>
 
-                 {cartAdded && (
-        <div className="text-center mt-3 mb-3 py-4">
-          <i className="bi bi-bag-check-fill text-success fs-1 mb-3 d-block"></i>
-          <h5 className="text-black">Product added to your Bag 🛍️</h5>
-        </div>
-      )}
+                {cartAdded && (
+                  <div className="text-center mt-3 mb-3 py-4">
+                    <i className="bi bi-bag-check-fill text-success fs-1 mb-3 d-block"></i>
+                    <h5 className="text-black">Product added to your Bag 🛍️</h5>
+                  </div>
+                )}
+
+                {sizeAlert && (
+                  <div className="text-center mt-3 mb-3 py-4">
+                    <i className="bi bi-exclamation-circle-fill text-dark fs-1 mb-3 d-block"></i>
+                    <h6 className="text-black">
+                      Please choose your size before adding to the bag or
+                      wishlist 💫
+                    </h6>
+                  </div>
+                )}
               </div>
             </div>
           </div>

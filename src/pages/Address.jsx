@@ -4,6 +4,7 @@ import NextStepContext from "../context/NextStepContext";
 import { useContext } from "react";
 import AddAddress from "../components/AddAddress";
 import { useLocation, useNavigate } from "react-router-dom";
+import Footer from "../components/Footer";
 
 
 
@@ -25,7 +26,15 @@ const Address = () => {
         </>
       ) : (
         <>
+        <div
+        className="d-flex flex-column min-vh-100"
+      >
+
+      
           <Header />
+          <main className="flex-grow-1">
+
+         
           {fromCheckout && (
             <div className="text-center mt-3">
               <button
@@ -38,6 +47,11 @@ const Address = () => {
           )}
 
           <AddAddress />
+
+           </main>
+
+          <Footer />
+          </div>
         </>
       )}
     </>

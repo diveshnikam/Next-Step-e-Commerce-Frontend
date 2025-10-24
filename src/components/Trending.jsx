@@ -26,13 +26,13 @@ const Trending = () => {
       )}
 
       {!loading && error && (
-        <div className="alert alert-danger mt-5 text-center" role="alert">
+        <div className="alert alert-danger mt-5 text-center container" role="alert">
           Failed to load Trending. Please try again.
         </div>
       )}
 
       {!loading && !error && trending.length === 0 && (
-        <div className="alert alert-danger mt-5 text-center">No Trending available.</div>
+        <div className="alert alert-danger mt-5 text-center  container">No Trending available.</div>
       )}
 
       {!loading && !error && trending.length > 0 && (

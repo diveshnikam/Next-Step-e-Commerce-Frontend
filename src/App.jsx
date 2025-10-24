@@ -26,7 +26,7 @@ function App() {
         <>
           <Search />
           <div>
-            <Link to="/products/all" className="">
+            <Link to="/products/All" className="">
               <img
                 src="https://res.cloudinary.com/di71zb4sb/image/upload/v1759355976/ChatGPT_Image_Sep_27_2025_at_01_51_34_PM_fd3wr3.png"
                 alt="hero banner image"

@@ -46,7 +46,7 @@ const UserProfile = () => {
         </div>
       </div>
 
-      {/* Footer at bottom */}
+    
       <Footer />
     </div>
   );

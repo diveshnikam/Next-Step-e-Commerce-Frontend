@@ -36,7 +36,7 @@ const Products = () => {
   }, [category]);
 
   let url = "";
-  if (category === "all") {
+  if (category === "All") {
     url = `https://next-step-ecommerce-backend.vercel.app/shoes`;
   } else {
     url = `https://next-step-ecommerce-backend.vercel.app/shoes/category/${category}`;
@@ -52,7 +52,7 @@ const Products = () => {
     params.append("rating", rating);
   }
 
-  if (category && category !== "all") {
+  if (category && category !== "All") {
     params.append("category", category);
   }
 
@@ -94,13 +94,21 @@ const Products = () => {
         </>
       ) : (
         <>
-          <div className="container">
-            <div className="sticky-top">
+         <div className="d-flex flex-column min-vh-100 bg-white">
+
+           <div className="sticky-top">
               <Header />
             </div>
 
+            <main className="flex-grow-1">
+
+               <div className="container">
+           
+
+          
+
             <div className="row g-5">
-              <div className="col-12 col-md-2 mt-5">
+              <div className="col-12 col-xl-2 col-md-3 mt-5">
                 <div
                   className="position-sticky"
                   style={{
@@ -114,7 +122,7 @@ const Products = () => {
                 </div>
               </div>
 
-              <div className="col-12 col-md-10">
+              <div className="col-12 col-xl-10 col-md-9">
                 {loading && !error && (
                   <div className="d-flex justify-content-center align-items-center min-vh-100">
                     <div
@@ -128,7 +136,7 @@ const Products = () => {
                 )}
 
                 {!loading && error && !notFound && (
-                  <div className="alert alert-danger mt-5 text-center">
+                  <div className="alert container alert-danger mt-5 text-center">
                     Failed to load. Please try again.
                   </div>
                 )}
@@ -147,23 +155,39 @@ const Products = () => {
                 )}
 
                 {!loading && !error && data.length === 0 && !notFound === 0 && (
-                  <div className="alert alert-danger mt-5 text-center">
+                  <div className="alert alert-danger mt-5 text-center container">
                     No Products available.
                   </div>
                 )}
 
+                <div>
+                   <h5 className="container mt-md-1 mt-lg-4 mb-5">{category} Shoes ({data.length})</h5>
+                </div>
+
                 {!loading && !error && data.length > 0 && (
                   <>
+                   
                     <FilterCard data={data} />
                   </>
                 )}
               </div>
             </div>
           </div>
+
+            </main>
+
+
+
+                 <Footer />
+
+         </div>
+
+
+         
         </>
       )}
 
-      <Footer />
+     
     </>
   );
 };

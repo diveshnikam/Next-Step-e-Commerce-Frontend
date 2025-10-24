@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import WishlistCard from "../components/WishlistCard";
 
 const Wishlist = () => {
-  const { show, setShow } = useContext(NextStepContext);
+  const { show, setShow, refreshCounts } = useContext(NextStepContext);
 
   const { productData, loading, error } = useFetchSimilar(
     "https://next-step-ecommerce-backend.vercel.app/products/wishlist"
@@ -47,7 +47,7 @@ const Wishlist = () => {
 
               {!loading && error && (
                 <div
-                  className="alert alert-danger mt-5 text-center"
+                  className="alert alert-danger mt-5 text-center container"
                   role="alert"
                 >
                   Failed to load Wishlist. Please try again.
@@ -70,7 +70,7 @@ const Wishlist = () => {
                     favourites.
                   </p>
                   <Link
-                    to="/products/all"
+                    to="/products/All"
                     className="btn btn-dark rounded-pill px-4 py-2 mt-2"
                   >
                     Continue Shopping

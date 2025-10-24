@@ -155,7 +155,13 @@ const Checkout = () => {
 
                          
 
-              
+               <div className="">
+
+                     <h2>Checkout</h2>
+
+                  </div>
+                  
+
 
                 
 
@@ -166,13 +172,7 @@ const Checkout = () => {
                   <div className="">
 
                    
-                  <div className="text-center">
-
-                     <h2>Checkout</h2>
-
-                  </div>
-                  
-
+                 
                         
 
                     

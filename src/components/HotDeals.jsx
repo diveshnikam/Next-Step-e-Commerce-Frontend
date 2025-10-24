@@ -26,13 +26,13 @@ const HotDeals = () => {
       )}
 
       {!loading && error && (
-        <div className="alert alert-danger mt-5 text-center" role="alert">
+        <div className="alert alert-danger mt-5 text-center  container" role="alert">
           Failed to load Hot Deals. Please try again.
         </div>
       )}
 
       {!loading && !error && hotDeals.length === 0 && (
-        <div className="alert alert-danger mt-5 text-center">No hot deals available.</div>
+        <div className="alert alert-danger mt-5 text-center  container">No hot deals available.</div>
       )}
 
       {!loading && !error && hotDeals.length > 0 && (
