@@ -142,7 +142,7 @@ const Checkout = () => {
                 been confirmed and will be delivered soon.
               </p>
               <Link
-                to="/products/all"
+               to="/products/All"
                 className="btn btn-white rounded-pill px-4 py-2 fw-semibold"
               >
                 Continue Shopping
@@ -150,116 +150,88 @@ const Checkout = () => {
             </div>
           ) : (
             <>
- 
-             <div className="container mt-5">
-
-                         
-
-               <div className="">
-
-                     <h2>Checkout</h2>
-
-                  </div>
-                  
-
-
-                
-
-                <div className="d-flex justify-content-center" >
-
-                  
-
-                  <div className="">
-
-                   
-                 
-                        
-
-                    
-                   
-                    
-
-                     {!loading && !error && addresses.length > 0 && (
-                  <>
-                  <h4 className="mt-5 mb-5">Select Delivery Address</h4>
-                    {addresses.map((addr, index) => {
-                      return (
-                        <div
-                          key={index}
-                          className={`border rounded-3 p-4 mb-3     ${
-                            selectedAddress === addr._id ? "border-dark" : ""
-                          }`}
-                          onClick={() => setSelectedAddress(addr._id)}
-                          style={{ cursor: "pointer" }}
-                        >
-                          <h6 className="fw-semibold mb-1">{addr.name}</h6>
-                          <p className="mb-0 text-muted">
-                            {addr.street}, {addr.city}, {addr.state},{" "}
-                            {addr.country} - {addr.pincode}
-                          </p>
-                        </div>
-                      );
-                    })}
-                    <div className="">
-
-                        <Link
-                      to="/address?from=checkout"
-                      className="btn btn-dark rounded px-3 mt-2"
-                    >
-                      Add / Edit Address
-                    </Link>
-
-                    </div>
-
-                    <div className="">
-
-                      {!loadingCart && !cartError && cartData.length > 0 && (
-                  <>
-                    <div className="bg-white  p-4 mt-5 ">
-                      <h5 className="fw-semibold mb-3">Order Summary</h5>
-                      {cartData.map((item) => (
-                        <div
-                          key={item._id}
-                          className="d-flex justify-content-between mb-2"
-                        >
-                          <span>{item.productId.name}</span>
-                          <span>
-                            ₹{item.productId.price} × {item.quantity}
-                          </span>
-                        </div>
-                      ))}
-                      <hr />
-                      <div className="d-flex justify-content-between fw-bold">
-                        <span>Total</span>
-                        <span>₹{total}</span>
-                      </div>
-
-                      <div className="d-flex justify-content-end mt-4">
-                        <button
-                          onClick={placeOrder}
-                          className="btn btn-dark  p-2 rounded"
-                        >
-                          Place Order
-                        </button>
-                      </div>
-                    </div>
-                    
-                    
-                  </>
-                )}
-
-                    </div>
-                    
-                  </>
-                )}
-
-                  </div>
-
-                 
-
+              <div className="container mt-5">
+                <div className="">
+                  <h2>Checkout</h2>
                 </div>
 
-                
+                <div className="d-flex justify-content-center">
+                  <div className="">
+                    {!loading && !error && addresses.length > 0 && (
+                      <>
+                        <h4 className="mt-5 mb-5">Select Delivery Address</h4>
+                        {addresses.map((addr, index) => {
+                          return (
+                            <div
+                              key={index}
+                              className={`border rounded-3 p-4 mb-3     ${
+                                selectedAddress === addr._id
+                                  ? "border-dark"
+                                  : ""
+                              }`}
+                              onClick={() => setSelectedAddress(addr._id)}
+                              style={{ cursor: "pointer" }}
+                            >
+                              <h6 className="fw-semibold mb-1">{addr.name}</h6>
+                              <p className="mb-0 text-muted">
+                                {addr.street}, {addr.city}, {addr.state},{" "}
+                                {addr.country} - {addr.pincode}
+                              </p>
+                            </div>
+                          );
+                        })}
+                        <div className="">
+                          <Link
+                            to="/address?from=checkout"
+                            className="btn btn-dark rounded px-3 mt-2"
+                          >
+                            Add / Edit Address
+                          </Link>
+                        </div>
+
+                        <div className="">
+                          {!loadingCart &&
+                            !cartError &&
+                            cartData.length > 0 && (
+                              <>
+                                <div className="bg-white  p-4 mt-5 ">
+                                  <h5 className="fw-semibold mb-3">
+                                    Order Summary
+                                  </h5>
+                                  {cartData.map((item) => (
+                                    <div
+                                      key={item._id}
+                                      className="d-flex justify-content-between mb-2"
+                                    >
+                                      <span>{item.productId.name}</span>
+                                      <span>
+                                        ₹{item.productId.price} ×{" "}
+                                        {item.quantity}
+                                      </span>
+                                    </div>
+                                  ))}
+                                  <hr />
+                                  <div className="d-flex justify-content-between fw-bold">
+                                    <span>Total</span>
+                                    <span>₹{total}</span>
+                                  </div>
+
+                                  <div className="d-flex justify-content-end mt-4">
+                                    <button
+                                      onClick={placeOrder}
+                                      className="btn btn-dark  p-2 rounded"
+                                    >
+                                      Place Order
+                                    </button>
+                                  </div>
+                                </div>
+                              </>
+                            )}
+                        </div>
+                      </>
+                    )}
+                  </div>
+                </div>
 
                 {alertAddress && (
                   <div className="text-center mt-4 py-4 px-3">
@@ -304,8 +276,6 @@ const Checkout = () => {
                   </div>
                 )}
 
-               
-
                 {loadingCart && !cartError && (
                   <div className="text-center my-5">
                     <div className="spinner-border text-dark" role="status">
@@ -333,15 +303,13 @@ const Checkout = () => {
                       and find something you’ll love!
                     </p>
                     <Link
-                      to="/products/all"
+                      to="/products/All"
                       className="btn btn-dark rounded-pill px-4 py-2 mt-2"
                     >
                       Continue Shopping
                     </Link>
                   </div>
                 )}
-
-                
               </div>
             </>
           )}
