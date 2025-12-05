@@ -148,9 +148,8 @@ const Cart = () => {
 
                 {alertCart && (
                   <div className="text-center mt-5 mb-5 py-4 fade-in">
-                    <i className="bi bi-cart-check-fill text-success fs-1 mb-3 d-block"></i>
                     <h5 className="text-black">
-                      Product added to your Cart 🛒
+                      Product added to Favourites 🖤
                     </h5>
                   </div>
                 )}
@@ -187,7 +186,7 @@ const Cart = () => {
                         exploring and find something you’ll love!
                       </p>
                       <Link
-                        to="/products/all"
+                        to="/products/All"
                         className="btn btn-dark rounded-pill px-4 py-2 mt-2"
                       >
                         Continue Shopping

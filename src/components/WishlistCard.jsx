@@ -75,7 +75,7 @@ const WishlistCard = ({ data }) => {
           <h4 className="text-secondary">Your wishlist is empty 🖤</h4>
           <p className="text-muted">Browse products and add your favourites!</p>
           <Link
-            to="/products/all"
+            to="/products/All"
             className="btn btn-dark rounded-pill px-4 py-2 mt-3"
           >
             Continue Shopping

@@ -119,6 +119,13 @@ const Checkout = () => {
     setTotal(0);
   };
 
+  const scrollToOrder = () => {
+    window.scrollTo({
+      top: document.documentElement.scrollHeight,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <>
       {show ? (
@@ -142,7 +149,7 @@ const Checkout = () => {
                 been confirmed and will be delivered soon.
               </p>
               <Link
-               to="/products/All"
+                to="/products/All"
                 className="btn btn-white rounded-pill px-4 py-2 fw-semibold"
               >
                 Continue Shopping
@@ -169,7 +176,10 @@ const Checkout = () => {
                                   ? "border-dark"
                                   : ""
                               }`}
-                              onClick={() => setSelectedAddress(addr._id)}
+                              onClick={() => {
+                                setSelectedAddress(addr._id);
+                                scrollToOrder();
+                              }}
                               style={{ cursor: "pointer" }}
                             >
                               <h6 className="fw-semibold mb-1">{addr.name}</h6>
@@ -188,6 +198,18 @@ const Checkout = () => {
                             Add / Edit Address
                           </Link>
                         </div>
+                        {alertAddress && (
+                          <div className="text-center mt-4 py-4 px-3">
+                            <i className="bi bi-geo-alt text-warning fs-1 mb-3 d-block"></i>
+                            <h5 className="fw-semibold text-dark mb-2">
+                              No Address Selected
+                            </h5>
+                            <p className="text-muted mb-3">
+                              Please select a delivery address before placing
+                              your order 🚚
+                            </p>
+                          </div>
+                        )}
 
                         <div className="">
                           {!loadingCart &&
@@ -233,19 +255,6 @@ const Checkout = () => {
                   </div>
                 </div>
 
-                {alertAddress && (
-                  <div className="text-center mt-4 py-4 px-3">
-                    <i className="bi bi-geo-alt text-warning fs-1 mb-3 d-block"></i>
-                    <h5 className="fw-semibold text-dark mb-2">
-                      No Address Selected
-                    </h5>
-                    <p className="text-muted mb-3">
-                      Please select a delivery address before placing your order
-                      🚚
-                    </p>
-                  </div>
-                )}
-
                 {loading && !error && (
                   <div className="text-center my-5">
                     <div className="spinner-border text-dark" role="status">
@@ -273,6 +282,12 @@ const Checkout = () => {
                     <p className="text-muted mb-0">
                       Add your first address to get started 🏠
                     </p>
+                    <Link
+                      to="/address"
+                      className="btn btn-dark rounded-pill px-4 py-2 mt-4"
+                    >
+                      Add Address
+                    </Link>
                   </div>
                 )}
 

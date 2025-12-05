@@ -38,7 +38,7 @@ const Orders = () => {
 
   useEffect(() => {
     if (productData) {
-      setOrderData(productData);
+      setOrderData([...productData].reverse());
     }
   }, [productData]);
 
@@ -155,8 +155,7 @@ const Orders = () => {
                 )}
               </div>
 
-             <div className="d-flex flex-wrap justify-content-center align-items-center text-center gap-3 mt-5 mb-5">
-
+              <div className="d-flex flex-wrap justify-content-center align-items-center text-center gap-3 mt-5 mb-5">
                 <button
                   className="btn btn-dark"
                   onClick={prevPage}
@@ -193,10 +192,6 @@ const Orders = () => {
                       setErrorMsg(false);
                       return;
                     }
-
-                    
-
-                    
 
                     const num = Number(value);
 

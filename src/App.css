@@ -150,6 +150,15 @@
 }
 
 
+/* address feild error */
+.is-invalid-field {
+  border: 2px solid #dc3545 !important;
+  background-color: #fff6f6 !important;
+  border-radius: 6px;
+}
+
+
+
 
 
 
